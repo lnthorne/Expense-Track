@@ -1,26 +1,16 @@
 import mongoose, { Schema } from "mongoose";
-import { ExpenseCategory } from "../util/expense.interface";
-import { IncomeSource } from "../util/income.interface";
+import { IUser } from "../util/users.interface";
 
-const UserSchema: Schema = new Schema({
+const UserSchema: Schema = new Schema<IUser>({
 	username: { type: String, required: true, unique: true },
 	email: { type: String, required: true, unique: true },
+	firstName: { type: String, required: true },
+	lastName: { type: String, required: true },
 	password: { type: String, required: true },
-	expenses: [
-		{
-			description: { type: String, required: true },
-			amount: { type: Number, required: true },
-			date: { type: Date, default: Date.now },
-			category: { type: String, enum: Object.values(ExpenseCategory), required: true },
-		},
-	],
-	income: [
-		{
-			source: { type: String, enum: Object.values(IncomeSource), required: true },
-			amount: { type: Number, required: true },
-			date: { type: Date, default: Date.now },
-		},
-	],
+	profileImage: { type: String, required: false },
+	settings: {
+		colour: { type: String, required: true },
+	},
 });
 
-export const User = mongoose.model("User", UserSchema);
+export const User = mongoose.model<IUser>("User", UserSchema);

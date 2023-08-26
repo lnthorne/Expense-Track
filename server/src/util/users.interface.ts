@@ -1,11 +1,13 @@
-import { Document } from "mongoose";
-import { IExpense } from "./expense.interface";
-import { IIncome } from "./income.interface";
+import { Document, Types } from "mongoose";
+import { ISettings } from "./settings.interface";
 
 export interface IUser extends Document {
+	userId: Types.ObjectId;
 	username: string;
 	email: string;
+	firstName: string;
+	lastName: string;
 	password: string;
-	expenses: IExpense[];
-	income: IIncome[];
+	profileImage?: string;
+	settings: ISettings;
 }
