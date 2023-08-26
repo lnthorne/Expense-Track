@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import { CurrencyType, ICurrency } from '../util/currency.interface';
+import { CurrencyType, ICurrency } from '../util/interfaces/currency.interface';
 
 const CurrencySchema = new Schema<ICurrency>({
   name: {

@@ -1,5 +1,5 @@
 import mongoose, { Schema, Types, model } from 'mongoose';
-import { IIncome, IncomeSource } from '../util/income.interface';
+import { IIncome, IncomeSource } from '../util/interfaces/income.interface';
 
 const IncomeSchema = new Schema<IIncome>({
   userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },

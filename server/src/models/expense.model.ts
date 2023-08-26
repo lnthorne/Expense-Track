@@ -6,7 +6,7 @@ import {
   ISharedExpense,
   PaymentMethod,
   RecurringInterverval,
-} from '../util/expense.interface';
+} from '../util/interfaces/expense.interface';
 
 const ExpenseSchema = new Schema<IExpense>({
   userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },

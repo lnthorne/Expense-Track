@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import { IReport } from '../util/report.interface'; // Replace with the actual path to your IReport interface file.
+import { IReport } from '../util/interfaces/report.interface'; // Replace with the actual path to your IReport interface file.
 
 // Define a sub-document schema for categoryBreakdown
 const CategoryBreakdownSchema = new Schema({

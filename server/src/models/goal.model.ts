@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import { IGoal } from '../util/goal.interface'; // Make sure to replace with the actual path to your IGoal interface file.
+import { IGoal } from '../util/interfaces/goal.interface'; // Make sure to replace with the actual path to your IGoal interface file.
 
 const GoalSchema = new Schema<IGoal>({
   userId: {
