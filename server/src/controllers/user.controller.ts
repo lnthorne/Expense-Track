@@ -4,10 +4,10 @@ import { IUser } from '../util/interfaces/users.interface';
 
 export class UserController {
     public async CreateUser(req: Request, res: Response): Promise<void> {
-        const userData = req.body;
+        const userData: IUser = req.body;
 
         try {
-            const newUser = new User(userData);
+            const newUser: IUser = new User(userData);
             await newUser.save();
 
             res.status(201).json({
@@ -22,7 +22,7 @@ export class UserController {
     public async GetUserById(req: Request, res: Response): Promise<void> {
         try {
             const userId = req.params.id; // Assuming you're getting the ID from the URL parameters
-            const user = await User.findById(userId);
+            const user: IUser | null = await User.findById(userId);
 
             if (!user) {
                 res.status(404).json({ message: 'User not found' });
@@ -37,9 +37,13 @@ export class UserController {
 
     public async UpdateUser(req: Request, res: Response): Promise<void> {
         try {
-            const user = await User.findByIdAndUpdate(req.params.id, req.body, {
-                new: true,
-            });
+            const user: IUser | null = await User.findByIdAndUpdate(
+                req.params.id,
+                req.body,
+                {
+                    new: true,
+                },
+            );
 
             if (!user) {
                 res.status(404).json({ message: 'User not found' });
@@ -53,7 +57,9 @@ export class UserController {
 
     public async DeleteUser(req: Request, res: Response): Promise<void> {
         try {
-            const user = await User.findByIdAndDelete(req.params.id);
+            const user: IUser | null = await User.findByIdAndDelete(
+                req.params.id,
+            );
 
             if (!user) {
                 res.status(404).json({ message: 'User not found' });
