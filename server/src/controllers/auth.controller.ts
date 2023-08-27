@@ -3,16 +3,19 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { User } from '../models/user.model';
 import { IUser } from '../util/interfaces/users.interface';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export class AuthController {
     private static generateJWT(user: IUser): string {
         const payload = {
-            id: user.id,
+            id: user.userId,
             username: user.username,
         };
-        const secret = process.env.JWT_SECRET || 'your-secret-key';
+        const secret = process.env.JWT_SECRET;
         const options = { expiresIn: '1d' };
-        return jwt.sign(payload, secret, options);
+        return jwt.sign(payload, secret!, options);
     }
 
     public async register(req: Request, res: Response): Promise<void> {
