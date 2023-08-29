@@ -1,15 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import DashboardComponent from './pages/dashboard/dashboard';
 import LoginComponent from './pages/login/login';
 
 function App() {
     return (
-        <div className="App">
-            <header className="App-header">
-                <LoginComponent />
-            </header>
-        </div>
+        <Router>
+            <div>
+                <Routes>
+                    <Route path="/" element={<LoginComponent />} />
+                    <Route path="/dashboard" element={<DashboardComponent />} />
+                </Routes>
+            </div>
+        </Router>
     );
 }
 
