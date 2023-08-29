@@ -1,7 +1,7 @@
 import { CallAPI, Endpoint } from './endpoints';
-import { IUser } from '@interfaces/users.interface';
+import { IUser, IUserLoginPayload } from '@interfaces/users.interface';
 
-export async function Register(userData: IUser) {
+export async function Register(userData: IUserLoginPayload) {
     const response = await CallAPI({
         endpoint: Endpoint.REGISTER,
         method: 'POST',
@@ -15,7 +15,7 @@ export async function Register(userData: IUser) {
     return response;
 }
 
-export async function Login(userData: IUser) {
+export async function Login(userData: IUserLoginPayload) {
     const response = await CallAPI({
         endpoint: Endpoint.LOGIN,
         method: 'POST',
