@@ -10,7 +10,8 @@ import {
     ErrorMessage,
     ToggleText,
 } from './login.styles';
-import { IUserLoginPayload, IUser } from '@interfaces/users.interface';
+import { IUser } from '@interfaces/users.interface';
+import { useNavigate } from 'react-router-dom';
 
 interface IUserState extends Partial<IUser> {
     confirmPassword?: string;
@@ -28,6 +29,7 @@ const LoginComponent: React.FC = () => {
     const [state, setState] = useState<IUserState>(initialState);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [isRegistering, setIsRegistering] = useState(false);
+    const navigation = useNavigate();
 
     const handleSubmit = async () => {
         let response;
@@ -65,6 +67,7 @@ const LoginComponent: React.FC = () => {
                     ? 'Registration successful!'
                     : 'Login successful!',
             );
+            navigation('/dashboard');
         }
     };
 
