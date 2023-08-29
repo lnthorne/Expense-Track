@@ -10,7 +10,7 @@ dotenv.config();
 export class AuthController {
     private static generateJWT(user: IUser): string {
         const payload = {
-            id: user.userId,
+            id: user._id,
             username: user.username,
         };
         const secret = process.env.JWT_SECRET;

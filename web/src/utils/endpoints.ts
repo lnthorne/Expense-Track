@@ -13,6 +13,7 @@ interface APICallProps {
     endpoint: Endpoint;
     method?: Method; // axios has its own type for HTTP methods
     data?: any;
+    params?: Record<string, any>;
 }
 
 interface APIError {
@@ -26,6 +27,7 @@ export async function CallAPI({
     endpoint,
     method = 'GET',
     data = {},
+    params = {},
 }: APICallProps) {
     const token = localStorage.getItem('jwtToken');
 
@@ -35,6 +37,7 @@ export async function CallAPI({
             url: endpoint,
             method,
             data,
+            params,
             headers: token ? { Authorization: `Bearer ${token}` } : undefined,
         });
         return { data: response.data, error: null };

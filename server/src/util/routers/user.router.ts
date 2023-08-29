@@ -6,7 +6,7 @@ const UserRouter = express.Router();
 
 UserRouter.post('/', UserService.CreateUser);
 
-UserRouter.get('/:id', UserService.GetUserById);
+UserRouter.get('/', UserService.GetUserById);
 
 UserRouter.put('/:id', UserService.UpdateUser);
 

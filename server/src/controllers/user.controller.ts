@@ -20,8 +20,9 @@ export class UserController {
     }
 
     public async GetUserById(req: Request, res: Response): Promise<void> {
+        console.log((req as any).user);
         try {
-            const userId = req.params.id; // Assuming you're getting the ID from the URL parameters
+            const userId = (req as any).user.id; // Assuming you're getting the ID from the URL parameters
             const user: IUser | null = await User.findById(userId);
 
             if (!user) {
