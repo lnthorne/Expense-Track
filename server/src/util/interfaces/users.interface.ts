@@ -11,3 +11,8 @@ export interface IUser extends Document {
     profileImage?: string;
     settings: ISettings;
 }
+
+export interface IUserLoginPayload {
+    username: string;
+    password: string;
+}
