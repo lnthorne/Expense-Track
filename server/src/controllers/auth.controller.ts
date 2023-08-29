@@ -19,6 +19,7 @@ export class AuthController {
     }
 
     public async register(req: Request, res: Response): Promise<void> {
+        console.log(req.body);
         try {
             const salt = await bcrypt.genSalt(10);
             const hashedPassword = await bcrypt.hash(req.body.password, salt);
@@ -42,6 +43,7 @@ export class AuthController {
     }
 
     public async login(req: Request, res: Response): Promise<void> {
+        console.log(req.body);
         try {
             const user: IUser | null = await User.findOne({
                 username: req.body.username,

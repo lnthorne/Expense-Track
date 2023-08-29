@@ -9,7 +9,7 @@ const UserSchema: Schema = new Schema<IUser>({
     password: { type: String, required: true },
     profileImage: { type: String, required: false },
     settings: {
-        colour: { type: String, required: true }, // TODO: Create settings schema
+        colour: { type: String, required: true, default: 'Blue' }, // TODO: Create settings schema
     },
 });
 
