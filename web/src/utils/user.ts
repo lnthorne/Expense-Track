@@ -11,4 +11,3 @@ export async function GetCurrentUser() {
 
 // The server is returning teh current user based off of the token we gave it
 // We shoudl not be returning the password of the user
-// Next we will use the _id to get the current users financial information

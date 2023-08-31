@@ -8,9 +8,9 @@ UserRouter.post('/', UserService.CreateUser);
 
 UserRouter.get('/', UserService.GetUserById);
 
-UserRouter.put('/:id', UserService.UpdateUser);
+UserRouter.put('/', UserService.UpdateUser);
 
-UserRouter.delete('/:id', UserService.DeleteUser);
+UserRouter.delete('/', UserService.DeleteUser);
 
 export default UserRouter;
 

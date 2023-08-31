@@ -74,87 +74,97 @@ const LoginComponent: React.FC = () => {
     return (
         <Container>
             <LoginBox>
-                <Title>Expense Tracker</Title>
+                <div>
+                    <Title>Expense Tracker</Title>
 
-                {isRegistering && (
-                    <>
+                    {isRegistering && (
+                        <>
+                            <Input
+                                type="text"
+                                placeholder="First Name"
+                                value={state.firstName || ''}
+                                onChange={(e) =>
+                                    setState({
+                                        ...state,
+                                        firstName: e.target.value,
+                                    })
+                                }
+                            />
+                            <Input
+                                type="text"
+                                placeholder="Last Name"
+                                value={state.lastName || ''}
+                                onChange={(e) =>
+                                    setState({
+                                        ...state,
+                                        lastName: e.target.value,
+                                    })
+                                }
+                            />
+                            <Input
+                                type="email"
+                                placeholder="Email"
+                                value={state.email || ''}
+                                onChange={(e) =>
+                                    setState({
+                                        ...state,
+                                        email: e.target.value,
+                                    })
+                                }
+                            />
+                        </>
+                    )}
+
+                    <Input
+                        type="text"
+                        placeholder="Username"
+                        value={state.username || ''}
+                        onChange={(e) =>
+                            setState({ ...state, username: e.target.value })
+                        }
+                    />
+                    <Input
+                        type="password"
+                        placeholder="Password"
+                        value={state.password || ''}
+                        onChange={(e) =>
+                            setState({ ...state, password: e.target.value })
+                        }
+                    />
+
+                    {isRegistering && (
                         <Input
-                            type="text"
-                            placeholder="First Name"
-                            value={state.firstName || ''}
+                            type="password"
+                            placeholder="Confirm Password"
+                            value={state.confirmPassword || ''}
                             onChange={(e) =>
                                 setState({
                                     ...state,
-                                    firstName: e.target.value,
+                                    confirmPassword: e.target.value,
                                 })
                             }
                         />
-                        <Input
-                            type="text"
-                            placeholder="Last Name"
-                            value={state.lastName || ''}
-                            onChange={(e) =>
-                                setState({ ...state, lastName: e.target.value })
-                            }
-                        />
-                        <Input
-                            type="email"
-                            placeholder="Email"
-                            value={state.email || ''}
-                            onChange={(e) =>
-                                setState({ ...state, email: e.target.value })
-                            }
-                        />
-                    </>
-                )}
+                    )}
 
-                <Input
-                    type="text"
-                    placeholder="Username"
-                    value={state.username || ''}
-                    onChange={(e) =>
-                        setState({ ...state, username: e.target.value })
-                    }
-                />
-                <Input
-                    type="password"
-                    placeholder="Password"
-                    value={state.password || ''}
-                    onChange={(e) =>
-                        setState({ ...state, password: e.target.value })
-                    }
-                />
+                    {errorMessage && (
+                        <ErrorMessage>{errorMessage}</ErrorMessage>
+                    )}
+                    <Button onClick={handleSubmit}>
+                        {isRegistering ? 'Register' : 'Login'}
+                    </Button>
 
-                {isRegistering && (
-                    <Input
-                        type="password"
-                        placeholder="Confirm Password"
-                        value={state.confirmPassword || ''}
-                        onChange={(e) =>
-                            setState({
-                                ...state,
-                                confirmPassword: e.target.value,
-                            })
-                        }
-                    />
-                )}
-
-                {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
-                <Button onClick={handleSubmit}>
-                    {isRegistering ? 'Register' : 'Login'}
-                </Button>
-
-                <ToggleText>
-                    {isRegistering
-                        ? 'Already have an account?'
-                        : "Don't have an account?"}
-                    <span
-                        className="link"
-                        onClick={() => setIsRegistering(!isRegistering)}
-                    >
-                        {isRegistering ? 'Login' : 'Register'}
-                    </span>
-                </ToggleText>
+                    <ToggleText>
+                        {isRegistering
+                            ? 'Already have an account?'
+                            : "Don't have an account?"}
+                        <span
+                            className="link"
+                            onClick={() => setIsRegistering(!isRegistering)}
+                        >
+                            {isRegistering ? 'Login' : 'Register'}
+                        </span>
+                    </ToggleText>
+                </div>
             </LoginBox>
         </Container>
     );

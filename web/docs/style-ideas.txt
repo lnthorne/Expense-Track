@@ -1,0 +1,22 @@
+Primary Button: Use a softer, muted hue that complements the background.
+Color: #4ecca3 (a muted teal)
+On hover: Darken the color slightly for a subtle interaction effect.
+
+Secondary Button:
+Color: #f8a170 (a soft coral)
+On hover: Again, darken slightly.
+
+Tertiary/Button Outline:
+Border Color: #ffffff (white)
+Background: Transparent
+Text Color: #ffffff (white)
+On hover: Change the background to a very soft gray or one of the gradient colors.
+
+Links & Highlighted Text:
+Color: #f8a170 (the soft coral can be a good highlight color)
+On hover for links: Underline or a slight color shift.
+
+Error or Warning Message:
+Color: #ff4b5c (a soft, not too aggressive red for errors)
+For warnings: #ffc542 (a soft yellow)
+Font Choices: Given the modern feel of the gradient, consider using a sans-serif font like Roboto, Lato, or Montserrat for general text. For headings or special text, you might choose a font with a bit more character, like Raleway or Poppins.

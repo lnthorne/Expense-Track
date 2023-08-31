@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import FinancialInfo from './financialInfo';
+import FinancialInfo from './expense';
 import { GetCurrentUser } from 'src/utils/user';
 import {
     IExpense,
@@ -43,17 +43,21 @@ const DashboardComponent: React.FC = () => {
 
         fetchUser();
         fetchAllExpenses();
-    }, []);
+    }, [expense, sharedExpense, recurringExpenses]);
 
     return (
         <div className="App">
-            <FinancialInfo
-                currentBalance={5000}
-                expensesThisMonth={expense![0].amount}
-                recurringExpenses={expense![1].amount}
-                budget={4000}
-                monthlyGoal={3500}
-            />
+            {isExpensesLoading ? (
+                <div>Loading</div>
+            ) : (
+                <FinancialInfo
+                    currentBalance={5000}
+                    expensesThisMonth={expense![0].amount}
+                    recurringExpenses={expense![1].amount}
+                    budget={4000}
+                    monthlyGoal={3500}
+                />
+            )}
         </div>
     );
 };
