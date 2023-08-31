@@ -1,5 +1,4 @@
 import { CallAPI, Endpoint } from './endpoints';
-import axios from 'axios';
 
 export async function GetCurrentUser() {
     const response = await CallAPI({

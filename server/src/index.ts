@@ -3,7 +3,7 @@ import connectDB from './database';
 import 'dotenv/config';
 import UserRouter from './util/routers/user.router';
 import AuthRouter from './util/routers/auth.router';
-import FinancialInfoRouter from './util/routers/financialInfo.router';
+import FinancialInfoRouter from './util/routers/expense.router';
 import verifyToken from './util/auth';
 import cors from 'cors';
 

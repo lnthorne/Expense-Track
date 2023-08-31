@@ -13,7 +13,7 @@ export enum Endpoint {
     RECURRING_EXPENSES = '/financial/recurring/',
 }
 
-interface APICallProps {
+export interface APICallProps {
     endpoint: Endpoint;
     method?: Method; // axios has its own type for HTTP methods
     data?: any;
