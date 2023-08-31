@@ -22,7 +22,7 @@ export class UserController {
     public async GetUserById(req: Request, res: Response): Promise<void> {
         console.log((req as any).user);
         try {
-            const userId = (req as any).user.id; // Assuming you're getting the ID from the URL parameters
+            const userId = (req as any).user.id;
             const user: IUser | null = await User.findById(userId);
 
             if (!user) {
@@ -38,11 +38,13 @@ export class UserController {
 
     public async UpdateUser(req: Request, res: Response): Promise<void> {
         try {
+            const userId = (req as any).user.id;
             const user: IUser | null = await User.findByIdAndUpdate(
-                req.params.id,
+                userId,
                 req.body,
                 {
                     new: true,
+                    runValidators: true,
                 },
             );
 

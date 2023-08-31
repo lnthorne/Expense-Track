@@ -13,3 +13,5 @@ UserRouter.put('/:id', UserService.UpdateUser);
 UserRouter.delete('/:id', UserService.DeleteUser);
 
 export default UserRouter;
+
+//  TODO: we do not need the :id parameter anymore as that info is stored in the token
