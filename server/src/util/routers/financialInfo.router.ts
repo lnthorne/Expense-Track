@@ -12,10 +12,13 @@ FinancialInfoRouter.get('/shared', ExpenseService.GetUserSharedExpenses);
 
 FinancialInfoRouter.get('/recurring', ExpenseService.GetUserRecurringExpenses);
 
-FinancialInfoRouter.put('/expense');
+FinancialInfoRouter.put('/expense/:id', ExpenseService.UpdateUserExpenses);
 
-FinancialInfoRouter.put('/shared');
+FinancialInfoRouter.put('/shared/:id', ExpenseService.UpdateUserSharedExpenses);
 
-FinancialInfoRouter.put('/recurring');
+FinancialInfoRouter.put(
+    '/recurring/:id',
+    ExpenseService.UpdateUserRecurringExpenses,
+);
 
 export default FinancialInfoRouter;
