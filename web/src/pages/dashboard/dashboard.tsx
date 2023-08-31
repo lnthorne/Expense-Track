@@ -49,8 +49,8 @@ const DashboardComponent: React.FC = () => {
         <div className="App">
             <FinancialInfo
                 currentBalance={5000}
-                expensesThisMonth={1200}
-                recurringExpenses={200}
+                expensesThisMonth={expense![0].amount}
+                recurringExpenses={expense![1].amount}
                 budget={4000}
                 monthlyGoal={3500}
             />
