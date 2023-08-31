@@ -234,6 +234,60 @@ export class ExpenseController {
             });
         }
     }
+    public async DeleteUserExpenses(req: Request, res: Response) {
+        try {
+            const expense: IExpense | null = await Expense.findByIdAndDelete(
+                req.params.id,
+            );
 
-    // TODO: Create Delete method
+            if (!expense) {
+                res.status(404).json({
+                    message: 'Expense not found or not authorized',
+                });
+                return;
+            }
+            res.send(expense);
+        } catch (error) {
+            res.status(500).json({ message: 'Error deleting expense', error });
+        }
+    }
+
+    public async DeleteUserRecurringExpense(req: Request, res: Response) {
+        try {
+            const expense: IRecurringExpense | null =
+                await RecurringExpense.findByIdAndDelete(req.params.id);
+
+            if (!expense) {
+                res.status(404).json({
+                    message: 'Recurring expense not found or not authorized',
+                });
+                return;
+            }
+            res.send(expense);
+        } catch (error) {
+            res.status(500).json({
+                message: 'Error deleting recurring expense',
+                error,
+            });
+        }
+    }
+    public async DeleteUserSharedExpenses(req: Request, res: Response) {
+        try {
+            const expense: ISharedExpense | null =
+                await SharedExpense.findByIdAndDelete(req.params.id);
+
+            if (!expense) {
+                res.status(404).json({
+                    message: 'Shared expenses not found or not authorized',
+                });
+                return;
+            }
+            res.send(expense);
+        } catch (error) {
+            res.status(500).json({
+                message: 'Error deleting shared expense',
+                error,
+            });
+        }
+    }
 }

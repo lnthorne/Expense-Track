@@ -59,10 +59,9 @@ export class UserController {
     }
 
     public async DeleteUser(req: Request, res: Response): Promise<void> {
+        const userId = (req as any).user.id;
         try {
-            const user: IUser | null = await User.findByIdAndDelete(
-                req.params.id,
-            );
+            const user: IUser | null = await User.findByIdAndDelete(userId);
 
             if (!user) {
                 res.status(404).json({ message: 'User not found' });
