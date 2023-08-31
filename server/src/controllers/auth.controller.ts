@@ -10,7 +10,7 @@ dotenv.config();
 export class AuthController {
     private static generateJWT(user: IUser): string {
         const payload = {
-            id: user.userId,
+            id: user._id,
             username: user.username,
         };
         const secret = process.env.JWT_SECRET;
@@ -81,7 +81,6 @@ export class AuthController {
 
     public async logout(req: Request, res: Response): Promise<void> {
         // In stateless JWT, there's typically no server-side logout action. Tokens are usually cleared client-side.
-        // If you're maintaining a token blacklist, you'd add the token to it here.
         res.status(200).json({ message: 'Logged out successfully' });
     }
 }

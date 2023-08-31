@@ -7,6 +7,7 @@ export enum IncomeSource {
 }
 
 export interface IIncome extends Document {
+    _id: Types.ObjectId;
     source: IncomeSource;
     amount: number;
     date: Date;

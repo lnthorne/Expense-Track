@@ -34,7 +34,7 @@ const RecurringExpenseSchema = new Schema<IRecurringExpense>({
     ammount: { type: Number, required: true },
     nextDueDate: { type: Date, required: true },
     recurringInterval: {
-        Type: String,
+        type: String,
         enum: Object.values(RecurringInterverval),
         required: true,
     },

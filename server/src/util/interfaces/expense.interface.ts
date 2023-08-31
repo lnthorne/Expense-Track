@@ -28,7 +28,7 @@ export enum RecurringInterverval {
 
 export interface IExpense extends Document {
     userId: Types.ObjectId;
-    expenseId: Types.ObjectId;
+    _id: Types.ObjectId;
     category: ExpenseCategory;
     amount: number;
     date: Date;
@@ -40,6 +40,7 @@ export interface IExpense extends Document {
 
 export interface IRecurringExpense extends Document {
     userId: Types.ObjectId;
+    _id: Types.ObjectId;
     recurringInterval: RecurringInterverval;
     nextDueDate: Date;
     category: ExpenseCategory;
@@ -51,6 +52,7 @@ export interface IRecurringExpense extends Document {
 
 export interface ISharedExpense extends Document {
     participants: Types.ObjectId[];
+    _id: Types.ObjectId;
     description: string;
     totalAmount: number;
     date: Date;

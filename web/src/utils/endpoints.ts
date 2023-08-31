@@ -7,12 +7,17 @@ export enum Endpoint {
     LOGOUT = '/auth/logout',
     REGISTER = '/auth/register',
     USER = '/user/',
+    ALL_EXPENSES = '/financial/',
+    EXPENSES = '/financial/expense/',
+    SHARED_EXPENSES = '/financial/shared/',
+    RECURRING_EXPENSES = '/financial/recurring/',
 }
 
-interface APICallProps {
+export interface APICallProps {
     endpoint: Endpoint;
     method?: Method; // axios has its own type for HTTP methods
     data?: any;
+    params?: Record<string, any>;
 }
 
 interface APIError {
@@ -26,6 +31,7 @@ export async function CallAPI({
     endpoint,
     method = 'GET',
     data = {},
+    params = {},
 }: APICallProps) {
     const token = localStorage.getItem('jwtToken');
 
@@ -35,6 +41,7 @@ export async function CallAPI({
             url: endpoint,
             method,
             data,
+            params,
             headers: token ? { Authorization: `Bearer ${token}` } : undefined,
         });
         return { data: response.data, error: null };
@@ -47,3 +54,5 @@ export async function CallAPI({
         };
     }
 }
+
+// TODO: Now have the front end call the financila service
