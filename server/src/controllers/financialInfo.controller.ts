@@ -13,8 +13,12 @@ import {
 export class ExpenseController {
     public async CreateExpense(req: Request, res: Response) {
         const expenseData = req.body;
+        const userId = (req as any).user.id;
         try {
-            const newExpense: IExpense = new Expense(expenseData);
+            const newExpense: IExpense = new Expense({
+                ...expenseData,
+                userId: userId,
+            });
             await newExpense.save();
 
             res.status(201).json({
@@ -31,11 +35,13 @@ export class ExpenseController {
 
     public async CreateSharedExpense(req: Request, res: Response) {
         const expenseData = req.body;
+        const userId = (req as any).user.id;
 
         try {
-            const newSharedExpense: ISharedExpense = new SharedExpense(
-                expenseData,
-            );
+            const newSharedExpense: ISharedExpense = new SharedExpense({
+                ...expenseData,
+                userId: userId,
+            });
             await newSharedExpense.save();
 
             res.status(201).json({
@@ -52,10 +58,14 @@ export class ExpenseController {
 
     public async CreateRecurringExpense(req: Request, res: Response) {
         const expenseData = req.body;
+        const userId = (req as any).user.id;
 
         try {
             const newRecurringExpense: IRecurringExpense = new RecurringExpense(
-                expenseData,
+                {
+                    ...expenseData,
+                    userId: userId,
+                },
             );
             await newRecurringExpense.save();
 
@@ -224,4 +234,6 @@ export class ExpenseController {
             });
         }
     }
+
+    // TODO: Create Delete method
 }
