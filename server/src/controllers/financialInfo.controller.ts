@@ -11,6 +11,66 @@ import {
 } from '../util/interfaces/expense.interface';
 
 export class ExpenseController {
+    public async CreateExpense(req: Request, res: Response) {
+        const expenseData = req.body;
+        try {
+            const newExpense: IExpense = new Expense(expenseData);
+            await newExpense.save();
+
+            res.status(201).json({
+                message: 'Expense created successfully',
+                expense: newExpense,
+            });
+        } catch (error) {
+            res.status(500).json({
+                message: 'Error creating expense',
+                error: error,
+            });
+        }
+    }
+
+    public async CreateSharedExpense(req: Request, res: Response) {
+        const expenseData = req.body;
+
+        try {
+            const newSharedExpense: ISharedExpense = new SharedExpense(
+                expenseData,
+            );
+            await newSharedExpense.save();
+
+            res.status(201).json({
+                message: 'Expense created successfully',
+                expense: newSharedExpense,
+            });
+        } catch (error) {
+            res.status(500).json({
+                message: 'Error creating shared expense',
+                error: error,
+            });
+        }
+    }
+
+    public async CreateRecurringExpense(req: Request, res: Response) {
+        const expenseData = req.body;
+
+        try {
+            const newRecurringExpense: IRecurringExpense = new RecurringExpense(
+                expenseData,
+            );
+            await newRecurringExpense.save();
+
+            res.status(201).json({
+                message: 'Expense created successfully',
+                expense: newRecurringExpense,
+            });
+        } catch (error) {
+            res.status(500).json({
+                message: 'Error creating recurring expense',
+                error: error,
+            });
+        }
+    }
+
     public async GetAllUserExpenses(req: Request, res: Response) {
         const userId = (req as any).user.id;
 

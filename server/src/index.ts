@@ -15,7 +15,7 @@ connectDB();
 app.use(express.json());
 app.use(cors());
 app.use('/user', verifyToken, UserRouter);
-app.use('/financialInfo', verifyToken, FinancialInfoRouter);
+app.use('/financial', verifyToken, FinancialInfoRouter);
 app.use('/auth', AuthRouter);
 
 app.listen(PORT, () => {

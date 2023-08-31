@@ -7,6 +7,10 @@ export enum Endpoint {
     LOGOUT = '/auth/logout',
     REGISTER = '/auth/register',
     USER = '/user/',
+    ALL_EXPENSES = '/financial/',
+    EXPENSES = '/financial/expense/',
+    SHARED_EXPENSES = '/financial/shared/',
+    RECURRING_EXPENSES = '/financial/recurring/',
 }
 
 interface APICallProps {
