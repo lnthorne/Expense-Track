@@ -38,11 +38,16 @@ export const Input = styled.input`
     width: 100%;
     padding: 0.6rem 1.2rem;
     margin-bottom: 1.5rem;
-    border: 1px solid #ddd;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 4px;
     font-size: 1rem;
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
+
+    &:focus {
+        outline: none;
+        border-color: rgba(255, 255, 255, 0.5); // Adjusted focus border color
+    }
 
     @media (min-width: 768px) {
         padding: 0.7rem 1.4rem;

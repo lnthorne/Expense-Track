@@ -9,14 +9,28 @@ import {
 import { IUser } from '@interfaces/users.interface';
 import { GetExpenseData } from 'src/utils/expense';
 import { Endpoint } from 'src/utils/endpoints';
+import {
+    Button,
+    ButtonContainer,
+    Container,
+    Greeting,
+    HeaderBar,
+    Title,
+    TranslucentTile,
+    Tile,
+    TranslucentBody,
+} from './dashboard.styles';
+import DashboardHeader from './header';
 
 const DashboardComponent: React.FC = () => {
-    const [expense, setExpense] = useState<IExpense[]>();
-    const [sharedExpense, setSharedExpense] = useState<ISharedExpense[]>();
-    const [recurringExpenses, setRecurringExpenses] =
-        useState<IRecurringExpense[]>();
+    const [expense, setExpense] = useState<IExpense[]>([]);
+    const [sharedExpense, setSharedExpense] = useState<ISharedExpense[]>([]);
+    const [recurringExpenses, setRecurringExpenses] = useState<
+        IRecurringExpense[]
+    >([]);
     const [isExpensesLoading, setExpensesLoading] = useState<boolean>(true);
     const [user, setUser] = useState<IUser>();
+    const [animationStage, setAnimationStage] = useState(0);
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -43,22 +57,27 @@ const DashboardComponent: React.FC = () => {
 
         fetchUser();
         fetchAllExpenses();
-    }, [expense, sharedExpense, recurringExpenses]);
+    }, []);
+
+    if (isExpensesLoading) {
+        return <div>Loading...</div>;
+    }
 
     return (
-        <div className="App">
-            {isExpensesLoading ? (
-                <div>Loading</div>
-            ) : (
-                <FinancialInfo
-                    currentBalance={5000}
-                    expensesThisMonth={expense![0].amount}
-                    recurringExpenses={expense![1].amount}
-                    budget={4000}
-                    monthlyGoal={3500}
-                />
-            )}
-        </div>
+        <TranslucentBody>
+            <DashboardHeader />
+            <Container>
+                <TranslucentTile>
+                    <FinancialInfo
+                        currentBalance={5000}
+                        expensesThisMonth={expense?.[0]?.amount || 0}
+                        recurringExpenses={expense?.[1]?.amount || 0}
+                        budget={4000}
+                        monthlyGoal={3500}
+                    />
+                </TranslucentTile>
+            </Container>
+        </TranslucentBody>
     );
 };
 

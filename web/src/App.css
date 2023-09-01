@@ -49,11 +49,11 @@ body {
 }
 
 .translucent-tile {
-    background: rgba(255, 255, 255, 0.1); /* White with 10% opacity */
-    border-radius: 8px; /* Rounded corners */
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
     padding: 20px;
     margin: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: A subtle shadow to make it pop a bit */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 @keyframes App-logo-spin {
