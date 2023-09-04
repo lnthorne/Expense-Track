@@ -21,6 +21,7 @@ import {
     TranslucentBody,
 } from './dashboard.styles';
 import DashboardHeader from './header';
+import CircularProgress from '@mui/joy/CircularProgress';
 
 const DashboardComponent: React.FC = () => {
     const [expense, setExpense] = useState<IExpense[]>([]);
@@ -60,13 +61,44 @@ const DashboardComponent: React.FC = () => {
     }, []);
 
     if (isExpensesLoading) {
-        return <div>Loading...</div>;
+        return (
+            <Container>
+                <CircularProgress size="lg" />
+            </Container>
+        );
     }
 
     return (
         <TranslucentBody>
             <DashboardHeader />
             <Container>
+                <TranslucentTile>
+                    <FinancialInfo
+                        currentBalance={5000}
+                        expensesThisMonth={expense?.[0]?.amount || 0}
+                        recurringExpenses={expense?.[1]?.amount || 0}
+                        budget={4000}
+                        monthlyGoal={3500}
+                    />
+                </TranslucentTile>
+                <TranslucentTile>
+                    <FinancialInfo
+                        currentBalance={5000}
+                        expensesThisMonth={expense?.[0]?.amount || 0}
+                        recurringExpenses={expense?.[1]?.amount || 0}
+                        budget={4000}
+                        monthlyGoal={3500}
+                    />
+                </TranslucentTile>
+                <TranslucentTile>
+                    <FinancialInfo
+                        currentBalance={5000}
+                        expensesThisMonth={expense?.[0]?.amount || 0}
+                        recurringExpenses={expense?.[1]?.amount || 0}
+                        budget={4000}
+                        monthlyGoal={3500}
+                    />
+                </TranslucentTile>
                 <TranslucentTile>
                     <FinancialInfo
                         currentBalance={5000}

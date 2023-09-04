@@ -2,18 +2,19 @@ import styled, { keyframes } from 'styled-components';
 
 export const Container = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center; // This centers the direct child elements, like the HeaderBar.
     width: 100%; // This makes sure the container spans the entire width of its parent.
     height: calc(100vh - 60px);
-    justify-content: flex-start;
+    justify-content: center;
     padding-top: 20px;
 `;
 
 export const TranslucentBody = styled.div`
     background: rgba(255, 255, 255, 0.1);
     border-radius: 8px;
-    margin: 10px;
+    margin: 15px;
+    box-shadow: 0px 8px 36px #222;
 `;
 
 export const TranslucentTile = styled.div`
