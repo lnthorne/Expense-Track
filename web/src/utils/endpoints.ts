@@ -11,6 +11,7 @@ export enum Endpoint {
     EXPENSES = '/financial/expense/',
     SHARED_EXPENSES = '/financial/shared/',
     RECURRING_EXPENSES = '/financial/recurring/',
+    INCOME = '/income/',
 }
 
 export interface APICallProps {
