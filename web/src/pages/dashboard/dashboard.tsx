@@ -13,10 +13,13 @@ import {
     Container,
     TranslucentTile,
     TranslucentBody,
+    LineColors,
 } from './dashboard.styles';
 import DashboardHeader from './header';
 import CircularProgress from '@mui/joy/CircularProgress';
 import LineGraph, { LineGraphProps } from './lineGraph';
+import { GetAllIncome } from 'src/utils/income';
+import { IIncome } from '@interfaces/income.interface';
 
 const MONTHS = [
     'January',
@@ -33,7 +36,7 @@ const MONTHS = [
     'December',
 ];
 
-const sumExpensesByDate = (expenses: IExpense[]) => {
+const sumExpensesByDate = (expenses: IExpense[] | IIncome[]) => {
     const sums = new Map<string, number>(); // Object to hold date:totalAmount key:value pairs
 
     expenses.forEach((expense) => {
@@ -45,7 +48,10 @@ const sumExpensesByDate = (expenses: IExpense[]) => {
     return sums;
 };
 
-const prepareExpenseLineGraphData = (expenses: IExpense[]): LineGraphProps => {
+const prepareExpenseLineGraphData = (
+    expenses: IExpense[] | IIncome[],
+    lineColor: LineColors,
+): LineGraphProps => {
     const summedExpenses = sumExpensesByDate(expenses);
     const labels = Array.from(summedExpenses.keys()).sort(); // Sort the dates if needed
     const data = labels.map((label) => summedExpenses.get(label) ?? 0);
@@ -60,8 +66,7 @@ const prepareExpenseLineGraphData = (expenses: IExpense[]): LineGraphProps => {
                     label: 'Daily Expenses',
                     data: data,
                     fill: false,
-                    backgroundColor: 'rgb(75, 192, 192)',
-                    borderColor: 'rgba(75, 192, 192, 0.2)',
+                    backgroundColor: lineColor,
                 },
             ],
         },
@@ -79,6 +84,9 @@ const DashboardComponent: React.FC = () => {
     const [user, setUser] = useState<IUser>();
     const [animationStage, setAnimationStage] = useState(0);
     const [expenseLineGraphData, setExpenseLineGraphData] =
+        useState<LineGraphProps>();
+    const [incomes, setIncomes] = useState<IIncome[]>();
+    const [incomeLineGraphData, setIncomeLineGraphData] =
         useState<LineGraphProps>();
 
     useEffect(() => {
@@ -100,6 +108,7 @@ const DashboardComponent: React.FC = () => {
 
                 const graphData = prepareExpenseLineGraphData(
                     expenseData.data.expenses,
+                    LineColors.EXPENSE,
                 );
                 setExpenseLineGraphData(graphData);
             } catch (error) {
@@ -109,11 +118,26 @@ const DashboardComponent: React.FC = () => {
             }
         };
 
-        const fetchAllIncome = async () => {};
+        const fetchAllIncome = async () => {
+            try {
+                const incomeData = await GetAllIncome();
+                setIncomes(incomeData.data);
+
+                const graphData = prepareExpenseLineGraphData(
+                    incomeData.data,
+                    LineColors.INCOME,
+                );
+                console.log(graphData);
+                setIncomeLineGraphData(graphData);
+            } catch (error) {
+                console.error(error);
+            }
+        };
 
         fetchUser();
         fetchAllExpenses();
-        console.log(expense);
+        fetchAllIncome();
+        console.log(incomes);
     }, []);
 
     if (isExpensesLoading) {
@@ -129,48 +153,64 @@ const DashboardComponent: React.FC = () => {
             <DashboardHeader />
             <Container>
                 <TranslucentTile>
-                    <FinancialInfo
-                        currentBalance={5000}
-                        expensesThisMonth={expense?.[0]?.amount || 0}
-                        recurringExpenses={expense?.[1]?.amount || 0}
-                        budget={4000}
-                        monthlyGoal={3500}
-                    />
-                </TranslucentTile>
-                <TranslucentTile>
-                    <FinancialInfo
-                        currentBalance={5000}
-                        expensesThisMonth={expense?.[0]?.amount || 0}
-                        recurringExpenses={expense?.[1]?.amount || 0}
-                        budget={4000}
-                        monthlyGoal={3500}
-                    />
-                </TranslucentTile>
-                <TranslucentTile>
-                    <FinancialInfo
-                        currentBalance={5000}
-                        expensesThisMonth={expense?.[0]?.amount || 0}
-                        recurringExpenses={expense?.[1]?.amount || 0}
-                        budget={4000}
-                        monthlyGoal={3500}
-                    />
-                </TranslucentTile>
-                <TranslucentTile>
-                    <FinancialInfo
-                        currentBalance={5000}
-                        expensesThisMonth={expense?.[0]?.amount || 0}
-                        recurringExpenses={expense?.[1]?.amount || 0}
-                        budget={4000}
-                        monthlyGoal={3500}
-                    />
-                </TranslucentTile>
-                <TranslucentTile>
                     <h2>Expenses Over Time</h2>
                     {expenseLineGraphData?.data ? (
                         <LineGraph data={expenseLineGraphData.data} />
                     ) : (
                         <CircularProgress size="sm" />
                     )}
+                </TranslucentTile>
+                <TranslucentTile>
+                    <h2>Income Over Time</h2>
+                    {incomeLineGraphData?.data ? (
+                        <LineGraph data={incomeLineGraphData.data} />
+                    ) : (
+                        <CircularProgress size="sm" />
+                    )}
+                </TranslucentTile>
+                <TranslucentTile>
+                    <h2>Savings Over Time</h2>
+                    {incomeLineGraphData?.data ? (
+                        <LineGraph data={incomeLineGraphData.data} />
+                    ) : (
+                        <CircularProgress size="sm" />
+                    )}
+                </TranslucentTile>
+                <TranslucentTile>
+                    <FinancialInfo
+                        currentBalance={5000}
+                        expensesThisMonth={expense?.[0]?.amount || 0}
+                        recurringExpenses={expense?.[1]?.amount || 0}
+                        budget={4000}
+                        monthlyGoal={3500}
+                    />
+                </TranslucentTile>
+                <TranslucentTile>
+                    <FinancialInfo
+                        currentBalance={5000}
+                        expensesThisMonth={expense?.[0]?.amount || 0}
+                        recurringExpenses={expense?.[1]?.amount || 0}
+                        budget={4000}
+                        monthlyGoal={3500}
+                    />
+                </TranslucentTile>
+                <TranslucentTile>
+                    <FinancialInfo
+                        currentBalance={5000}
+                        expensesThisMonth={expense?.[0]?.amount || 0}
+                        recurringExpenses={expense?.[1]?.amount || 0}
+                        budget={4000}
+                        monthlyGoal={3500}
+                    />
+                </TranslucentTile>
+                <TranslucentTile>
+                    <FinancialInfo
+                        currentBalance={5000}
+                        expensesThisMonth={expense?.[0]?.amount || 0}
+                        recurringExpenses={expense?.[1]?.amount || 0}
+                        budget={4000}
+                        monthlyGoal={3500}
+                    />
                 </TranslucentTile>
             </Container>
         </TranslucentBody>

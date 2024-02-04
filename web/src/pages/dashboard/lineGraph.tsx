@@ -30,7 +30,7 @@ export interface LineGraphProps {
             data: number[];
             fill: boolean;
             backgroundColor: string;
-            borderColor: string;
+            borderColor?: string;
         }[];
     };
     options?: any; // You can define a more specific type for chart options if necessary

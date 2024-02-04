@@ -2,12 +2,22 @@ import styled, { keyframes } from 'styled-components';
 
 export const Container = styled.div`
     display: flex;
-    flex-direction: row;
-    align-items: center; // This centers the direct child elements, like the HeaderBar.
+    flex-wrap: wrap; // Allows items to wrap into the next row if there's not enough space
+    align-items: flex-start; // Aligns items at the start of the container
     width: 100%; // This makes sure the container spans the entire width of its parent.
-    height: calc(100vh - 60px);
-    justify-content: center;
+    height: calc(100vh - 60px); // Adjust height as necessary
+    justify-content: center; // Centers the content horizontally
     padding-top: 20px;
+    gap: 20px; // Adds space between columns and rows
+
+    > div {
+        // Assuming direct children are the columns
+        flex: 1; // This allows each column to grow equally
+        max-width: 25%; // Limits each column to take up to 25% of the container's width
+        display: flex; // Makes the column a flex container
+        flex-direction: column; // Stacks the items in each column vertically
+        align-items: center; // Center items in each column
+    }
 `;
 
 export const TranslucentBody = styled.div`
@@ -76,3 +86,8 @@ export const Tile = styled.div`
     flex-direction: column;
     align-items: center;
 `;
+
+export enum LineColors {
+    INCOME = 'rgb(46, 204, 113)',
+    EXPENSE = 'rgb(255, 0, 0)',
+}
