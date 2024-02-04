@@ -4,6 +4,7 @@ import { IIncome, IncomeSource } from '../util/interfaces/income.interface';
 const IncomeSchema = new Schema<IIncome>({
     userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     source: { type: String, enum: Object.values(IncomeSource), required: true },
+    amount: { type: Schema.Types.Number, required: true },
     date: { type: Date, default: Date.now() },
     attachments: { type: [String], required: false },
     notes: { type: String, required: false },
