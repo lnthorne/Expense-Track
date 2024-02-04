@@ -28,6 +28,34 @@
     color: #61dafb;
 }
 
+@keyframes liquidFlow {
+    0% {
+        background-position: 100% 0%;
+    }
+    50% {
+        background-position: 0% 100%;
+    }
+    100% {
+        background-position: 100% 0%;
+    }
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: white;
+    background: linear-gradient(45deg, #1a1a2e, #16222a, #1a1a2e, #0f2027);
+    background-size: 200% 200%;
+    animation: liquidFlow 15s infinite;
+}
+
+.translucent-tile {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 @keyframes App-logo-spin {
     from {
         transform: rotate(0deg);

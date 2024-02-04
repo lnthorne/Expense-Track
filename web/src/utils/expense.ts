@@ -16,6 +16,7 @@ export async function GetExpenseData(
         endpoint: endpoint,
         method: 'GET',
     });
+    console.log(response);
 
     return response;
 }
